@@ -1,0 +1,407 @@
+Vim text editor
+http://www.openvim.com/
+Insert mode and command mode (normal mode) Esc, v visual mode
+
+Command mode:
+h do tylu
+j do dołu
+k do góry
+l do przodu
+
+
+b beginnnig of the word
+w to the start of next word
+e end of the word
+
+te wszystkie komendy można łączyć z numerami
+czyli jak zrobię 3w to przełączy się na początek 3go słowa
+5h to będzie 5 znaków do tyłu
+
+znajdowanie wystąpien slowa na ktorym jestem
+f czyli find i po tym znak którgo szukamy
+czyli fq - znajdzie wystapienie q
+mozna tez łaczyc z numerami no 3fq znajdzie trzecie wystapienie q 
+
+% czyli shift 5 znajduje zamykajacy nawias od tego w ktorym jestem
+
+0 - skocz na poczatek linii
+$ czyli shift 4 - skocz na koniec linii
+
+*  znajdzie kolejne wystapienie slowa
+# znajdzie poprzednie wystapienie slowa
+
+gg idzie do poczatku pliku
+G do konca
+numerekliniiG skoczy do danej linii w pliku np 3G do trzeciej linii
+
+szukanie w tekscie:
+najpierw /
+potem text, którego szukam i enter
+n - kolejne wystapienia, N - poprzednie
+
+o wstawia nowa linie ponizej i od razu w insert mode
+wpisz tekt i esc
+O wstawia linie powyzej i od razu insert mode
+wpisz teskt i esc
+
+x usuwa poprzedni znak. 
+X usuwa kolejny znak.
+wazne, ze nie trzeba insert moda wtedy klikac
+
+r replace znak bez wchodzenia w insert mode
+
+d usuwanie
+laczy sie z innymi
+np dw - usunie slowo po prawej od kursora
+d2e usunie 2 slowa po lewej od kursora
+dd usuwanie calej linii 
+
+. wywola poprzednia komende
+
+u - undo, cofnij zmiane
+ctrl + R - redo
+
+
+Visual mode
+wchodzi sie v
+chyba pokazuje co zaznacza
+np e - zaznacz slowo i widze ze zaznacza, d usunie
+
+Insert mode:
+liczbaiznaki esc zrobi dany znak/słowo ileś razy np
+3igo esc --> gogogo
+
+
+Do wychodzenia:
+:w - save
+:wq - zapisz i wyjdz, to samo co :x
+:q wyjdz
+:q! wyjdz bez zapisywania
+:help
+
+
+
+Bash:
+https://kinbiko.com/shell/basic-bash-commands/
+‘shell’ is a low-level program that executes commands. jest tez zsh i fish
+a terminal to jest to co wyświetla shella
+cd
+/ root, najwyzszy poziom gdzie mozna wejsc
+~ domowy czyli /home/aneta (albo Users/aneta na innych)
+. bieżący katalog
+.. jeden wyżej
+- katalog do ktorego wchodziłam w poprzedniej komendzie
+ll pokaz zawartosc dir
+echo wyprintuj zmienne srodowiskowe z $ np echo $USER. sa w .bashrc
+printenv printuje wszystkie zmienne sr
+echo "My name is $USER" > echo-example.txt  zapisz do pliku. nadpisze caly plik
+echo "My name is $USER" >> echo-example.txt zappenduje do pliku, nie nadpisze
+rm i rm -rf usun plik/dir
+mkdir
+rmdir
+cp co gdzie
+mv co gdzie
+clear czysci output na konsoli 
+pwd print working dir czyli cala sciezke gdzie jestem
+cat plik pokaze zawartosc pliku
+head plik pokaze tylko 1linie
+tail pokaze tylko ostatnia linie. mozna podac ile linii ma pokazac np tail -n 10 /etc/hosts
+
+
+echo -e "1d\n2d\n5d" > commands.txt 
+
+Stream EDitor (Sed) text processing tool
+https://www.digitalocean.com/community/tutorials/the-basics-of-using-the-sed-stream-editor-to-manipulate-text-in-linux
+
+Otwieranie pliku w sed:
+sed '' quote.txt
+
+usuwanie linii nr 1, 2, 3 z pliku: 
+sed -e '1d' -e '2d' -e '5d' books.txt 
+
+Można też zapisać komendy w pliku np
+w commands,txt są 1d, 2d, 3d
+i odpalić ten plik z -f i na czym ma je wykonać. linie zostaną usunięte z book.txt
+sed -f commands.txt books.txt
+
+-e - komenda do edycji
+-n nie daje outputu, tylko wrzuca do buforu
+-f do jakiego pliku maja sie odnosic komendy
+
+printowanie, bez -n zrobi to dwa razy, bo zczytuje linie jedna po jednej 
+sed -n 'p' plik
+
+substitution
+'s/old_word/new_word/'
+sed 's/on/forward/' annoying.txt
+zmieni tylko pierwsze wystapienie
+jak chcemy wszystkie to  g
+sed 's/on/forward/g' annoying.txt
+
+działa z regexami, ale tego jeszcze nie umiem
+
+
+Hierarchia katalogow w linuxie:
+https://www.thegeekstuff.com/2010/09/linux-file-system-structure
+
+root directory, as always on a Unix system is "/". Windows tego nie ma.
+sa tam bin, etc, home, root, var foldery
+
+Your home directory is "/Users/<username>" na linuxie, u mnie /home/aneta. a tu sa moje foldery np Downoloads, workspace itd
+
+/bin
+wspolne dla userow komendy linuxowe: ps, ls, sed, ping, grep itd
+
+/lib
+biblioteki potrzebne dodatkowo dla programow w /bin
+
+sbin - systemowe komendy, s- system
+
+/etc
+pliki konfiguracyjne
+jakies .conf
+
+/dev
+device files
+
+/proc
+/proc/{pid}  info o procesie w systemie z danym pid, chyba do killa to sie uzywa
+
+/var
+zmienne, pliki ktore rosna
+czyli rozne logi
+
+/tmp
+tymczasowe, usuwane po reboocie
+
+/usr
+programy usera
+/usr/bin sa moje programy, jest tam python
+
+/boot
+do bootowania systemu
+
+/opt
+optional, dodatkowe aplikacje
+np vagrant, google, postman u mnie
+
+/mnt
+tymczasowe miejsce dla mountowania deviceu, systemowe
+
+/media
+tu docelowe miejce gdzie sie przylacza device
+np /media/cdrom
+
+/srv
+service
+ server specific services related data.
+
+
+Regex
+https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285
+^aaa matchuje string zaczynający się na aaa
+$aaa matchuje string konczacy sie na aaa
+abc*        matches a string that has ab followed by zero or more c   czyli np ab albo abcccc
+abc+        matches a string that has ab followed by one or more c  czyli abc albo abccccc
+abc?        matches a string that has ab followed by zero or one c   np ab lub abc
+abc{2}      matches a string that has ab followed by 2 c czyli abcc
+abc{2,}     matches a string that has ab followed by 2 or more c czyli abcc albo abcccccccccc
+abc{2,5}    matches a string that has ab followed by 2 up to 5 c czyli abcc albo abccccc, ale nie abccccccccccccccccccccccccccccc
+a(bc)*      matches a string that has a followed by zero or more    czyli a albo abc albo abcbc
+            copies of the sequence bc
+a(bc){2,5}  matches a string that has a followed by 2 up to 5 copies of the sequence bc
+a(b|c)     matches a string that has a followed by b or c czyli ab i ac
+a[bc]      same as previous 
+\d         matches a single character that is a digit czli np a23b zmaczuje 2 i osobno 3
+\w         matches a word character (alphanumeric character plus underscore) np a23# zmachuje osobno a, 2 i 3
+\s         matches a whitespace character (includes tabs and line breaks) 
+.          matches any character zmachtuje wszystko w a23#
+
+Negacje od małych literek:
+\D         matches a single non-digit character czyli w a23 zmachuje a
+
+Flagi:
+lecą po / np comatchuję/g
+/aBc/i case insensitivewould match AbC
+/g szukaj w całym tekscie, nie koncz po pierwszym zmatchowaniu
+/m match tylko dla linii
+
+jest też grupowanie, ale nie patrzyłam:
+Grouping and capturing — ()
+
+Bracket expressions — []
+[abc]            matches a string that has either an a or a b or a c is the same as a|b|c
+[a-c]            same as previous
+[a-fA-F0-9]      a string that represents a single hexadecimal digit, case insensitively czyli a 8 9 o p x c fff  zmatchuje wszystko oprocz o p x czemu?
+[0-9]%           a string that has a character from 0 to 9 before a % sign np abc2% zmatchuje 2%
+[^a-zA-Z]        a string that has not a letter from a to z or from A to Z. In this case the ^ is used as negation of the expression
+
+Greedy and Lazy match
+<.+> matches <div>simple div</div>
+<.*?>  z ? zmatchuje mniejsza czesc z This is a <div> simple div</div> test cztli dwa razy <div>
+
+Boundaries — \b and \B
+\babc\b          performs a "whole words only" search
+\Babc\B          matches only if the pattern is fully surrounded by word characters
+
+Back-references — \1
+ale tego nie uczylam sie, to do grup
+
+Look-ahead and Look-behind — (?=) and (?<=)
+d(?=r)       matches a d only if is followed by r, but r will not be part of the overall regex match np z third drone zmatchuje d w drone
+(?<=r)d      matches a d only if is preceded by an r, but r will not be part of the overall regex match z third drone zmatchuje d w third
+sa tez negacje, ale olalam temat
+
+
+curl
+curl https://domain.com/
+curl -o plik https://domain.com/ zapisz output w pliku
+curl -I http://domain.com  show header
+curl -O URL1 -O URL2  sciagnij kilka plikow z roznych urli
+curl -u username:password URL
+-v verbose
+
+POST
+curl -d name=admin -d shoesize=12 http://example.com/  -d to data
+curl -d '{json}' -H 'Content-Type: application/json' https://example.com
+
+Grep
+https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples
+grep "czego_szukam" filename albo kilka plików
+-i case insensitive
+grep "REGEX" filename
+grep -iw "is" demo_file  szuka tylko całego słowa z -w
+-A liczba linii  np -A 3 wyprintuje match i 2 linie After
+-B liczba linii match i linie Before
+-C liczba linii pokaze match i liczbe linii nad i pod
+grep -r "ramesh" *  look for the string “ramesh” in all the files in the current directory and all it’s subdirectory.
+grep -v "go" demo_text zmathcuje wszystkie linie ktore nie maja slowa "go"
+grep -c "pattern" filename pokaze liczbe zmatchowan
+grep -v -c this demo_file  pokaze liczbe zmatchowan ktore NIE maja patternu
+grep -l this demo_*  -l pokaze tylko nazwy plikow ktore maja ten mathc
+-o pokaze string ktory matchuje. przydatne w regexach
+grep -n "go" demo_text  -n pokaze numer linii gdzie matchuje i sam macth
+
+tail
+tail -n liczba linii plik
+-c ilosc bajtów
+można podać kilka plików
+tail  -n 1 plik1 plik2
+-q nie pokazuje headera
+tail -f bedzie updatowal linie plikow
+
+xargs pozwala laczyc komendy
+find /tmp -mtime +14 | xargs rm  znajdz wszystkie pliki w tmp starsze niz 14 dni i zargs wykona rm na kazdym z tych plikow
+-t wyprintuje komende ktora wykonuje
+
+Rabbit
+https://www.cloudamqp.com/blog/2015-05-18-part1-rabbitmq-for-beginners-what-is-rabbitmq.html
+message broker can act as a middleman
+
+oprocz rabbita brokerami moga byc Redis, or a database
+
+client wysyla requesta - producer == web app wysyla wiadomosc np taska do rabbita i tu jest publisher info usera do rabbita- exchange ktora routuje message do odpowiednich queues - consumer (ktorego tez nazywaja subscriberem)odbiera taska z kolejki i uruchamia to co klient chcial.
+Consumer to zwykle worker celery. worker moze tez byc naraz producerem i consumerem
+message zostaje w kolejce dopoki nie sa obsluzone przez consumera
+komunikacja odpywa sie przez AMQP protocol
+
+Routing messages w exchange:
+task ma routing key
+queue ma binding key
+i te klucze maja sie zgadzac na rozne sposoby exchange:
+- 1 task do 1 kolejki. direct czyli dokladnie takie same nazwy kluczy aaa i aaa
+- topic - matchuje klucze po patternie np regexie
+- fanout - bez kluczy, do wszystkich kolejek zwiazanych
+
+zeby odpalic rabbita potrzebny jest channel
+trzeba zadeklarowac exchange, kolejki i podpiac ja pod kolejke
+jak to sie wszystkp zrobi, to opublikuj message do exchange 
+skonsumuj z kolejki przez consumera
+zamknij channel
+robi sie to przez biblioteke pika
+
+First of all, we need to set up/create a connection object. Here, the username, password, connection URL, port etc, will be specified. A TCP connection will be set up between the application and RabbitMQ when the start method is called.
+Secondly, a channel needs to be opened. A channel needs to be created in the TCP connection. The connection interface can be used to open a channel and when the channel is opened it can be used to send and receive messages.
+Declare/create a queue. Declaring a queue will cause it to be created if it does not already exist. All queues need to be declared before they can be used.
+In subscriber/consumer: Set up exchanges and bind a queue to an exchange. All exchanges need to be declared before they can be used. An exchange accepts messages from a producer application and routes them to message queues. For messages to be routed to queues, queues need to be bound to an exchange.
+In publisher: Publish a message to an exchange 
+In subscriber/consumer: Consume a message from a queue.
+Close the channel and the connection.
+
+
+Celery
+https://tests4geeks.com/python-celery-rabbitmq-tutorial/
+Celery is an asynchronous task queue
+consumer w rabbicie. moze byc też producerem
+celery wykonuje kod aplikacji, jakies wyciaganie z bazy itd
+tu się używało Pickle w starszej wersji celery jako sposob serializacji
+
+przyklad czyli task :
+@app.task
+def update_attendees(event_id, n):
+    e = Event.objects.get(id=id_event)
+    e.attendees_number = n
+    e.save()
+
+zwykle na koncu jest jeszcze baza danych w tym ciagu za konsumerem.
+worker kontaktuje sie z nia, zeby zapisac ze np cos tam zrobil
+
+Rabbit z celery
+najpierw zeby zrobic rabbita to trzeba stworzyc usera, vhosta i dac permissions
+rabbitmq-server
+rabbitmqctl add_user jimmy jimmy123
+rabbitmqctl add_vhost jimmy_vhost
+rabbitmqctl set_permissions -p jimmy_vhost jimmy ".*" ".*" ".*"
+
+
+test_celery
+    __init__.py
+    celery.py initalize celery app
+    tu podpinam rabbita jako broker
+	transport://userid:password@hostname:port/virtual_host
+	np 'amqp://jimmy:jimmy123@localhost/jimmy_vhost'
+
+    tasks.py tu siedza taski, kazda funkcja musi miec @app.task
+    run_tasks.py tak odpalam ręcznie:
+
+    run_tasks.py
+    if __name__ == '__main__':
+    result = longtime_add.delay(1,2)  
+    delay odpala task asynchronicznie
+
+zeby odpalić:
+- postaw worker
+celery -A test_celery worker --loglevel=info
+-A nazwa_apki worker
+- odpal taska:
+python -m test_celery.run_tasks
+
+Flower do monitoringu taskow celery
+
+elasticsearch
+odpalam ./elasticsearch
+dostępny pod localhost:9200
+
+dodawanie:
+stworzy index accounts z document type person i dorzuci 1 osobe
+POST localhost:9200/accounts/person/1 
+{
+    "name" : "John",
+    "lastname" : "Doe",
+    "job_description" : "Systems administrator and Linux specialit"
+}
+tak się wyciąga, będzie w _source
+GET localhost:9200/accounts/person/1
+
+update:
+POST localhost:9200/accounts/person/1/_update
+{
+      "doc":{
+       "job_description" : "Systems administrator and Linux specialist"
+     }
+} 
+
+szukanie:
+localhost:9200/_search?q=john
+mozna szukac np tylko w jednym konkretnym polu dokumentu:
+localhost:9200/_search?q=job_description:john
